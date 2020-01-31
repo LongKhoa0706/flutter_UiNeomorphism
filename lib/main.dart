@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:neomorphism/buttontapped.dart';
 import 'package:neomorphism/practise1.dart';
+
+import 'a.dart';
+import 'mybutton.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,6 +26,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 bool darkMode = false;
+bool buttonPress = false;
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
@@ -31,29 +37,38 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Center(
-              child: Container(
-                width: 200,
-                height: 200,
-                decoration: BoxDecoration(
-                  color: darkMode ? Colors.grey[850] : Colors.grey[300],
-                  borderRadius: BorderRadius.circular(40),
-                  boxShadow: [
-                    BoxShadow(
-                      color: darkMode ? Colors.grey[900] : Colors.grey[500],
-                      offset: Offset(10.0, 10.0),
-                      blurRadius: 15.0,
-                      spreadRadius: 1.0,
-                    ),
-                    BoxShadow(
-                      color: darkMode ? Colors.white30 : Colors.white,
-                      offset: Offset(-10.0, -10.0),
-                      blurRadius: 15.0,
-                      spreadRadius: 1.0,
-                    )
-                  ],
+            GestureDetector(
+              onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+              },
+              child: Center(
+                child: Container(
+                  width: 200,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    color: darkMode ? Colors.grey[850] : Colors.grey[300],
+                    borderRadius: BorderRadius.circular(40),
+                    boxShadow: [
+                      BoxShadow(
+                        color: darkMode ? Colors.grey[900] : Colors.grey[500],
+                        offset: Offset(10.0, 10.0),
+                        blurRadius: 15.0,
+                        spreadRadius: 1.0,
+                      ),
+                      BoxShadow(
+                        color: darkMode ? Colors.white30 : Colors.white,
+                        offset: Offset(-10.0, -10.0),
+                        blurRadius: 15.0,
+                        spreadRadius: 1.0,
+                      )
+                    ],
+                  ),
+                  child: Icon(
+                    Icons.android,
+                    size: 80,
+                    color: darkMode ? Colors.white : Colors.black,
+                  ),
                 ),
-                child: Icon(Icons.android,size: 80,color: darkMode ? Colors.white : Colors.black,),
               ),
             ),
             Center(
@@ -131,15 +146,73 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 RaisedButton(
-                  onPressed: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Practise1()));
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Practise1()));
                   },
-                )
+                ),
               ],
             ),
+            Center(
+              child: Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey[500],
+                      offset: Offset(10.0, 10.0),
+                      blurRadius: 15.0,
+                      spreadRadius: 1.0,
+                    ),
+                    BoxShadow(
+                      color: Colors.white,
+                      offset: Offset(-10.0, -10.0),
+                      blurRadius: 15.0,
+                      spreadRadius: 1.0,
+                    ),
+                  ],
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: <Color>[
+                      Colors.grey[200],
+                      Colors.grey[300],
+                      Colors.grey[400],
+                      Colors.grey[500],
+                    ],
+                    stops: [
+                      0.1,
+                      0.3,
+                      0.8,
+                      0.9,
+                    ],
+                  ),
+                ),
+                child: Icon(
+                  Icons.android,
+                  size: 80,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+
+            GestureDetector(
+              onTap: _letsPress,
+              child:  buttonPress ? ButtonTapped(icon: Icons.home,) : MyButton(icon: Icons.home,),
+            )
           ],
         ),
       ),
     );
+  }
+
+  void _letsPress() {
+    setState(() {
+      buttonPress = !buttonPress;
+
+    });
   }
 }
