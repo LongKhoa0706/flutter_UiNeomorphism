@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:neomorphism/buttontapped.dart';
-import 'package:neomorphism/practise1.dart';
+import 'package:neomorphism/practise/practise1/practise1.dart';
+import 'package:neomorphism/practise/practise2/practise2.dart';
 
-import 'a.dart';
 import 'mybutton.dart';
 
 void main() => runApp(MyApp());
@@ -38,9 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             GestureDetector(
-              onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
-              },
+              onTap: () {},
               child: Center(
                 child: Container(
                   width: 200,
@@ -113,8 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 FlatButton(
                   color: Colors.black,
@@ -128,9 +125,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),
-                ),
-                SizedBox(
-                  width: 80,
                 ),
                 FlatButton(
                   color: Colors.white,
@@ -146,9 +140,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 RaisedButton(
+                  child: Text("Practise 1 "),
                   onPressed: () {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => Practise1()));
+                  },
+                ),
+                RaisedButton(
+                  child: Text("Practise 2"),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Practise2()));
                   },
                 ),
               ],
@@ -198,10 +200,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-
             GestureDetector(
               onTap: _letsPress,
-              child:  buttonPress ? ButtonTapped(icon: Icons.home,) : MyButton(icon: Icons.home,),
+              child: buttonPress
+                  ? ButtonTapped(
+                      icon: Icons.home,
+                    )
+                  : MyButton(
+                      icon: Icons.home,
+                    ),
             )
           ],
         ),
@@ -212,7 +219,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void _letsPress() {
     setState(() {
       buttonPress = !buttonPress;
-
     });
   }
 }

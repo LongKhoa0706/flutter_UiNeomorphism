@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:neomorphism/hotel.dart';
+import 'package:neomorphism/practise/practise1/hotel.dart';
 
 class Practise1 extends StatefulWidget {
   @override
@@ -379,9 +379,9 @@ class _Practise1State extends State<Practise1> {
                                         ),
                                         Row(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
+                                          MainAxisAlignment.spaceEvenly,
                                           children: <Widget>[
                                             _buildIconItemPackage(
                                                 Icons.directions_car),
